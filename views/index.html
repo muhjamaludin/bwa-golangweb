@@ -1,15 +1,14 @@
 {{ template "layout" .}}
+
 {{ define "main" }}
+
+{{ range .}}
     <div class="text">
-        {{ .ID }}
+        {{ .Name }} - {{ .Price }}
+        {{ if lt .Stock 10 }}
+            Stok hampir habis
+        {{ end }}
     </div>
-    <div class="text">
-        {{ .Name }}
-    </div>
-    <div class="text">
-        {{ .Price }}
-    </div>
-    <div class="text">
-        {{ .Stock }}
-    </div>
+{{ end }}
+
 {{ end }}
