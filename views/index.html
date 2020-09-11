@@ -1,6 +1,15 @@
 {{ template "layout" .}}
 {{ define "main" }}
     <div class="text">
-        {{ .content }}
+        {{ .ID }}
+    </div>
+    <div class="text">
+        {{ .Name }}
+    </div>
+    <div class="text">
+        {{ .Price }}
+    </div>
+    <div class="text">
+        {{ .Stock }}
     </div>
 {{ end }}
