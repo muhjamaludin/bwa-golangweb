@@ -123,8 +123,23 @@ func Process(w http.ResponseWriter, r *http.Request) {
 		name := r.Form.Get("name")
 		message := r.Form.Get("message")
 
-		w.Write([]byte(name + "\n"))
-		w.Write([]byte(message))
+		data := map[string]interface{}{
+			"Name":    name,
+			"Message": message,
+		}
+
+		tmpl, err := template.ParseFiles(path.Join("views", "result.html"), path.Join("views", "layout.html"))
+		if err != nil {
+			log.Println(err)
+			http.Error(w, "Something trouble", http.StatusInternalServerError)
+			return
+		}
+		err = tmpl.Execute(w, data)
+		if err != nil {
+			log.Println(err)
+			http.Error(w, "Something trouble", http.StatusInternalServerError)
+			return
+		}
 
 		return
 	}
