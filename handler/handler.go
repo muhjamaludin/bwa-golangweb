@@ -76,3 +76,16 @@ func ProductHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 }
+
+func PostGet(w http.ResponseWriter, r *http.Request) {
+	method := r.Method
+
+	switch method {
+	case "GET":
+		w.Write([]byte("ini adalah GET"))
+	case "POST":
+		w.Write([]byte("ini adalah POST"))
+	default:
+		http.Error(w, "Erro is happening", http.StatusBadRequest)
+	}
+}
